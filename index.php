@@ -2,7 +2,7 @@
 	include "apikey.php";
 	include "Openid.php";
 
-	$OpenID = new LightOpenID("www.fleamarkettf.github.io")
+	$OpenID = new LightOpenID("www.fleamarkettf.github.io/index.html")
 	session_start();
 
 	if(!$OpenID->node){
@@ -23,7 +23,7 @@
 		$_SESSION['T2SteamAuth'] = str_replace("http://steamcomunity.com/openid/id/", "", $_SESSION['T2SteamAuth']);
 		if($_SESSION['T2SteamAuth'] !== null){
 			$Steam64 = str_replace("http://steamcomunity.com/openid/id/","",$_SESSION['T2SteamAuth'])
-			$Profile = file_get_contents("httpL//api.steampowered.com/ISteamUser/GetPlayerSumaries/v0002/?key=($api)$steamids=($Steam64)");
+			$Profile = get_contents("httpL//api.steampowered.com/ISteamUser/GetPlayerSumaries/v0002/?key=($api)$steamids=($Steam64)");
 			$buffer = fopen("cache/($Steam64).json","w+");
 			fwrite($buffer, $Profile);
 			fclose($buffer);
