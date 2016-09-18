@@ -14,7 +14,26 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 			<script src="index.php"></script>
+			<script>
+				<?php
 
+				require 'steamauth/steamauth.php';
+
+				?>
+			<?php
+			if(!isset($_SESSION['steamid'])) {
+
+			    loginbutton(); //login button
+
+			}  else {
+
+			    include ('steamauth/userInfo.php'); //To access the $steamprofile array
+			    //Protected content
+
+			    logoutbutton(); //Logout Button
+			}     
+			?>
+			</script>
 			<style>
 
 			body{
@@ -122,6 +141,7 @@
 					var Trades = 5;
 					this.innerHTML(trades);
 				}
+
 			</script>
 </head>
 <body>
@@ -129,6 +149,7 @@
 	<div id="top_header" class="navbar-header col-sm-12">
 	    <a target="_blank" id="brand" class="navbar-brand" href="#">FleaMarket.TF</a>
 	    <input type="textarea" name="test" placeholder=" Price Search" id="searchbar">
+	    <button onclick="loginbutton();"></button>
 	</div>
 
 	<nav class="navbar navbar-default" role="navigation">
